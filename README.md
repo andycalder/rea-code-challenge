@@ -1,15 +1,14 @@
-#rea-code-challenge
+# rea-code-challenge
 
 This is a React app that renders real estate listings from JSON data. It allows listings to be added to and removed from a saved list.
 
-##Instructions
+## Instructions
 
 This app requires Node and a web browser. To install and use the app, run:
 ```
 cd rea-code-challenge
 npm install
 npm start
-
 ```
 Then open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -23,7 +22,6 @@ Then open [http://localhost:3000](http://localhost:3000) to view it in the brows
 To run tests, run:
 ```
 npm test
-
 ```
 
 ## Architecture
