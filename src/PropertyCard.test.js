@@ -29,7 +29,7 @@ describe('PropertyCard', () => {
 
   test('renders button on mouse over', () => {
     render(<PropertyCard data={testProperty} />);
-    const card = screen.getByLabelText(/property card/i);
+    const card = screen.getByRole('listitem');
     fireEvent.mouseOver(card);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
@@ -37,26 +37,26 @@ describe('PropertyCard', () => {
 
   test('removes button on mouse out', () => {
     render(<PropertyCard data={testProperty} />);
-    const card = screen.getByLabelText(/property card/i);
+    const card = screen.getByRole('listitem');
     fireEvent.mouseOver(card);
     fireEvent.mouseOut(card);
     const button = screen.queryByRole('button');
     expect(button).not.toBeInTheDocument();
   });
 
-  test("renders button with 'add' text when props.isSaved === false", () => {
+  test("renders button with 'add property' text when props.isSaved === false", () => {
     render(<PropertyCard data={testProperty} isSaved={false} />);
-    const card = screen.getByLabelText(/property card/i);
+    const card = screen.getByRole('listitem');
     fireEvent.mouseOver(card);
     const button = screen.getByRole('button');
-    expect(button).toHaveTextContent(/add/i);
+    expect(button).toHaveTextContent(/add property/i);
   });
 
-  test("renders button with 'remove' text when props.isSaved === true", () => {
+  test("renders button with 'remove property' text when props.isSaved === true", () => {
     render(<PropertyCard data={testProperty} isSaved={true} />);
-    const card = screen.getByLabelText(/property card/i);
+    const card = screen.getByRole('listitem');
     fireEvent.mouseOver(card);
     const button = screen.getByRole('button');
-    expect(button).toHaveTextContent(/remove/i);
+    expect(button).toHaveTextContent(/remove property/i);
   });
 });

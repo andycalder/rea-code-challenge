@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const Card = styled.div`
+const Card = styled.li`
   background: lightgray;
   margin: 0.5em;
 `;
@@ -20,7 +20,6 @@ const PropertyCard = (props) => {
 
   return (
     <Card
-      aria-label="property card"
       onMouseEnter={() => setButtonVisible(true)}
       onMouseLeave={() => setButtonVisible(false)}
     >
@@ -33,7 +32,7 @@ const PropertyCard = (props) => {
         visible={buttonVisible}
         onClick={() => props.onButtonClick()}
       >
-        {props.isSaved ? 'remove' : 'add'}
+        {props.isSaved ? 'Remove property' : 'Add property'}
       </Button>
     </Card>
   );

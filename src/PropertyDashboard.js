@@ -15,6 +15,11 @@ const Column = styled.div`
   align-items: center;
 `;
 
+const List = styled.ul`
+  list-style: none;
+  padding-left: 0;
+`;
+
 const PropertyDashboard = (props) => {
   const [saved, setSaved] = useState(props.data.saved.slice())
 
@@ -46,18 +51,20 @@ const PropertyDashboard = (props) => {
   const savedCards = saved.map(property => renderPropertyCard(property, true));
 
   return (
-    <>
-      <Row>
-        <Column>
-          <h1>Results</h1>
+    <Row>
+      <Column>
+        <h1 id="results-heading">Results</h1>
+        <List aria-labelledby="results-heading">
           {resultsCards}
-        </Column>
-        <Column>
-          <h1>Saved Properties</h1>
+        </List>
+      </Column>
+      <Column>
+        <h1 id="saved-heading">Saved Properties</h1>
+        <List aria-labelledby="saved-heading">
           {savedCards}
-        </Column>
-      </Row>
-    </>
+        </List>
+      </Column>
+    </Row>
   );
 };
 
