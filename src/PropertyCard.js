@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './index.css';
 
-function Property(props) {
+function PropertyCard(props) {
   const [buttonStyle, setButtonStyle] = useState({display: 'none'});
 
   const agencyStyle = {
@@ -31,4 +31,4 @@ function Property(props) {
   );
 }
 
-export default Property;
+export default PropertyCard;

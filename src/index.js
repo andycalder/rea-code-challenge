@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import PropertyDashboard from './PropertyDashboard';
 import data from './data.json';
 
 ReactDOM.render(
-  <App data={data} />,
+  <PropertyDashboard data={data} />,
   document.getElementById('root')
 );
