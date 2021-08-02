@@ -1,34 +1,41 @@
 import { useState } from 'react';
-import './index.css';
+import styled from 'styled-components';
 
-function PropertyCard(props) {
-  const [buttonStyle, setButtonStyle] = useState({display: 'none'});
+const Card = styled.div`
+  background: lightgray;
+  margin: 0.5em;
+`;
 
-  const agencyStyle = {
-    backgroundColor: props.data.agency.brandingColors.primary
-  };
+const AgencyBanner = styled.div`
+  width: 100%;
+  background: ${props => props.color};
+`;
+
+const Button = styled.button`
+  display: ${props => props.visible ? 'block' : 'none'};
+`;
+
+const PropertyCard = (props) => {
+  const [buttonVisible, setButtonVisible] = useState(false);
 
   return (
-    <div
-      className="property-card"
-      onMouseEnter={() => setButtonStyle({display: 'block'})}
-      onMouseLeave={() => setButtonStyle({display: 'none'})}
+    <Card
+      onMouseEnter={() => setButtonVisible(true)}
+      onMouseLeave={() => setButtonVisible(false)}
     >
-      <div className="agency" style={agencyStyle}>
-        <img src={props.data.agency.logo} alt=""/>
-      </div>
-      <div className="image">
-        <img width="300px" src={props.data.mainImage} alt=""/>
-      </div>
+      <AgencyBanner color={props.data.agency.brandingColors.primary}>
+        <img src={props.data.agency.logo} alt="Agency"/>
+      </AgencyBanner>
+      <img width="300px" src={props.data.mainImage} alt="Property"/>
       <div className="price">{props.data.price}</div>
-      <button
-        style={buttonStyle}
+      <Button
+        visible={buttonVisible}
         onClick={() => props.onButtonClick()}
       >
-        {props.saved ? 'remove' : 'add'}
-      </button>
-    </div>
+        {props.isSaved ? 'remove' : 'add'}
+      </Button>
+    </Card>
   );
-}
+};
 
 export default PropertyCard;

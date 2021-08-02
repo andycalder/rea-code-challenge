@@ -1,8 +1,21 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
-import './index.css';
 
-function PropertyDashboard(props) {
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+`;
+
+const PropertyDashboard = (props) => {
   const [saved, setSaved] = useState(props.data.saved.slice())
 
   const save = (property) => {
@@ -34,18 +47,18 @@ function PropertyDashboard(props) {
 
   return (
     <>
-      <div className="row">
-        <div className="column">
+      <Row>
+        <Column>
           <h1>Results</h1>
           {resultsCards}
-        </div>
-        <div className="column">
+        </Column>
+        <Column>
           <h1>Saved Properties</h1>
           {savedCards}
-        </div>
-      </div>
+        </Column>
+      </Row>
     </>
   );
-}
+};
 
 export default PropertyDashboard;
