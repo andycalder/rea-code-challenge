@@ -20,6 +20,7 @@ const PropertyCard = (props) => {
 
   return (
     <Card
+      aria-label="property card"
       onMouseEnter={() => setButtonVisible(true)}
       onMouseLeave={() => setButtonVisible(false)}
     >
