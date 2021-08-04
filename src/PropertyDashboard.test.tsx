@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import PropertyDashboard from './PropertyDashboard';
 import data from './data.json';
 
-const getListLength = (listName) => {
+const getListLength = (listName: RegExp) => {
   const list = screen.getByRole('list', { name: listName });
   return within(list).queryAllByRole('listitem').length;
 };

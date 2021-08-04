@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Property } from './PropertyDashboard';
+
+interface Props {
+  data: Property,
+  isSaved: boolean,
+  onButtonClick: () => void
+}
 
 const Card = styled.li`
   background: lightgray;
@@ -11,11 +18,7 @@ const AgencyBanner = styled.div`
   background: ${props => props.color};
 `;
 
-const Button = styled.button`
-  display: ${props => props.visible ? 'block' : 'none'};
-`;
-
-const PropertyCard = (props) => {
+const PropertyCard = (props: Props) => {
   const [buttonVisible, setButtonVisible] = useState(false);
 
   return (
@@ -28,12 +31,9 @@ const PropertyCard = (props) => {
       </AgencyBanner>
       <img width="300px" src={props.data.mainImage} alt="Property"/>
       <div className="price">{props.data.price}</div>
-      <Button
-        visible={buttonVisible}
-        onClick={() => props.onButtonClick()}
-      >
+      {buttonVisible && (<button onClick={() => props.onButtonClick()}>
         {props.isSaved ? 'Remove property' : 'Add property'}
-      </Button>
+      </button>)}
     </Card>
   );
 };

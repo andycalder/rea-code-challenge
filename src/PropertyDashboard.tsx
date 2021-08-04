@@ -2,6 +2,27 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 
+export interface Property {
+  price: string,
+  agency: {
+    brandingColors: {
+      primary: string
+    },
+    logo: string
+  },
+  id: string,
+  mainImage: string
+}
+
+interface ResponseData {
+  results: Array<Property>,
+  saved: Array<Property>
+}
+
+interface Props {
+  data: ResponseData
+}
+
 const Row = styled.div`
   display: flex;
   flex-direction: row;
@@ -20,10 +41,10 @@ const List = styled.ul`
   padding-left: 0;
 `;
 
-const PropertyDashboard = (props) => {
+const PropertyDashboard = (props: Props) => {
   const [saved, setSaved] = useState(props.data.saved.slice())
 
-  const save = (property) => {
+  const save = (property: Property) => {
     // Check if the property has already been saved
     if (saved.find(item => item.id === property.id)) {
       return;
@@ -32,11 +53,11 @@ const PropertyDashboard = (props) => {
     }
   };
 
-  const unsave = (id) => {
+  const unsave = (id: string) => {
     setSaved(saved.filter(item => item.id !== id))
   };
 
-  const renderPropertyCard = (property, isSaved) => {
+  const renderPropertyCard = (property: Property, isSaved: boolean) => {
     return (
       <PropertyCard
         key={property.id}
