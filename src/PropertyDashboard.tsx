@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 
@@ -42,7 +42,11 @@ const List = styled.ul`
 `;
 
 const PropertyDashboard = (props: Props) => {
-  const [saved, setSaved] = useState(props.data.saved.slice())
+  const [saved, setSaved] = useState(props.data.saved.slice());
+
+  useEffect(() => {
+    document.title = `${saved.length} Saved Properties`;
+  });
 
   const save = (property: Property) => {
     // Check if the property has already been saved
@@ -80,7 +84,7 @@ const PropertyDashboard = (props: Props) => {
         </List>
       </Column>
       <Column>
-        <h1 id="saved-heading">Saved Properties</h1>
+        <h1 id="saved-heading">Saved Properties {saved.length}</h1>
         <List aria-labelledby="saved-heading">
           {savedCards}
         </List>
